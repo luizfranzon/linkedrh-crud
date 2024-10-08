@@ -1,5 +1,5 @@
 export interface IProductModel {
-  id?: number
+  id: number
   title: string
   category: string
   imageUrl: string

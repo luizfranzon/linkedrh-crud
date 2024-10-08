@@ -1,3 +1,11 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Adicionar produto</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="handleCloseModal()">Fechar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-header>
@@ -26,9 +34,9 @@
             label="Selecione a categoria"
             placeholder="Categoria"
           >
-            <ion-select-option value="Eletronico">Eletronico</ion-select-option>
+            <ion-select-option value="Eletrônico">Eletrônico</ion-select-option>
             <ion-select-option value="Decorativo">Decorativo</ion-select-option>
-            <ion-select-option value="Mostruario">Mostruário</ion-select-option>
+            <ion-select-option value="Mostruário">Mostruário</ion-select-option>
           </ion-select>
         </ion-item>
         <ion-item>
@@ -63,15 +71,19 @@
           ></ion-input>
         </ion-item>
       </form>
-      <div class="button-box">
-        <ion-button (click)="handleClearForm()" fill="clear">Limpar</ion-button>
-        <ion-button
-          [disabled]="!checkIfFormIsValid()"
-          form="product-form"
-          type="submit"
-          >Adicionar</ion-button
-        >
-      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <div class="button-box ion-padding">
+      <ion-button (click)="handleClearForm()" fill="clear">Limpar</ion-button>
+      <ion-button
+        [disabled]="!checkIfFormIsValid()"
+        form="product-form"
+        type="submit"
+        >Adicionar</ion-button
+      >
+    </div>
+  </ion-toolbar>
+</ion-footer>

@@ -9,15 +9,25 @@
   </ion-header>
 
   <ion-list>
-    @if (products.length === 0) {
+    @if(loadProducts().isLoading === true) {
+    <app-product-card-skeleton />
+    <app-product-card-skeleton />
+    <app-product-card-skeleton />
+    } @else if (!products().length) {
     <div class="empty-list-message">
       <span>Nenhum produto encontrado!</span>
     </div>
-    } @else { @for (product of products; track product.id) {
+    } @else { @for (product of products(); track product.id) {
     <app-product-card
-      (onProductDelete)="getProducts()"
       [productData]="product"
-    ></app-product-card>
+      (deleteProduct)="confirmDeleteProduct(product.id)"
+    />
     } }
   </ion-list>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button (click)="handleAddProduct()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

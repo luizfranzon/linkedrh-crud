@@ -8,7 +8,7 @@
   <ion-card-header>
     <ion-card-title>
       {{ productData().title }}
-      <ion-button id="open-modal" color="danger">
+      <ion-button color="danger" (click)="handleDeleteProduct()">
         <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
       </ion-button>
     </ion-card-title>
@@ -22,30 +22,3 @@
     {{ productData().description }}
   </ion-card-content>
 </ion-card>
-
-<ion-modal #modal trigger="open-modal">
-  <ng-template>
-    <ion-content>
-      <ion-toolbar>
-        <ion-title>Tem certeza?</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="modal.dismiss()">
-            <ion-icon name="close-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-      <div class="ion-padding">
-        <p>Tem certeza que deseja excluir?</p>
-        <div class="buttons-box">
-          <ion-button (click)="modal.dismiss()"> Cancelar </ion-button>
-          <ion-button
-            (click)="handleDeleteProduct(); modal.dismiss()"
-            color="danger"
-          >
-            Sim
-          </ion-button>
-        </div>
-      </div>
-    </ion-content>
-  </ng-template>
-</ion-modal>

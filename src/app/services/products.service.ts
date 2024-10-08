@@ -1,8 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { map, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { IProductModel } from "../models/product.model";
 
+interface AddProduct extends Omit<IProductModel, "id"> {}
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +17,7 @@ export class ProductsService {
     return this.httpService.get<IProductModel[]>(this.url)
   }
 
-  addProduct(product: IProductModel): Observable<IProductModel> {
+  addProduct(product: AddProduct): Observable<IProductModel> {
     return this.httpService.post<IProductModel>(this.url, product)
   }
 
