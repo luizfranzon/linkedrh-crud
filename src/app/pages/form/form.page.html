@@ -1,7 +1,77 @@
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">form</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Novo produto:</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form
+        id="product-form"
+        [formGroup]="productForm"
+        (ngSubmit)="handleSubmit($event)"
+      >
+        <ion-item>
+          <ion-input
+            label="Nome do produto"
+            labelPlacement="floating"
+            placeholder="Mouse sem fio"
+            required="true"
+            formControlName="title"
+            id="title"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-select
+            formControlName="category"
+            id="category"
+            label="Selecione a categoria"
+            placeholder="Categoria"
+          >
+            <ion-select-option value="Eletronico">Eletronico</ion-select-option>
+            <ion-select-option value="Decorativo">Decorativo</ion-select-option>
+            <ion-select-option value="Mostruario">Mostruário</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            label="Preço"
+            labelPlacement="floating"
+            placeholder="20.00"
+            type="number"
+            required="true"
+            formControlName="price"
+            id="price"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            label="Descrição"
+            labelPlacement="floating"
+            placeholder="Mouse sem fio da logitech"
+            required="true"
+            formControlName="description"
+            id="description"
+          ></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input
+            label="Endereço da imagem"
+            labelPlacement="floating"
+            placeholder="https://www.logitech.com/mouse.png"
+            required="true"
+            formControlName="imageUrl"
+            id="imageUrl"
+          ></ion-input>
+        </ion-item>
+      </form>
+      <div class="button-box">
+        <ion-button (click)="handleClearForm()" fill="clear">Limpar</ion-button>
+        <ion-button
+          [disabled]="!checkIfFormIsValid()"
+          form="product-form"
+          type="submit"
+          >Adicionar</ion-button
+        >
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -14,15 +14,15 @@ export class NavigationMenuComponent implements OnInit {
 
   router = inject(Router)
 
+  navigationTitle = ''
+
   readonly navigationItems = [
-    { title: 'Home', path: '/home' }, 
-    { title: 'List', path: '/list' }, 
-    { title: 'Form', path: '/form' }
+    { title: 'Início', path: '/home' }, 
+    { title: 'Produtos', path: '/products' }, 
+    { title: 'Adicionar Produto', path: '/form' }
   ];
 
   constructor() { }
-
-  navigationTitle = ''
 
   ngOnInit() {
     this.router.events.subscribe(val => {
@@ -33,6 +33,7 @@ export class NavigationMenuComponent implements OnInit {
           this.navigationTitle = item.title
         }
       })
+
     })
   }
 

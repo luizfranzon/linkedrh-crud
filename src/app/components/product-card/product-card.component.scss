@@ -1,0 +1,26 @@
+img {
+  border-radius: 8px;
+}
+
+ion-card-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ion-modal {
+  --height: 185px;
+  --width: 80%;
+  --border-radius: 16px;
+  --border: 1px solid var(--ion-color-light);
+}
+
+ion-modal::part(backdrop) {
+  background: rgba(209, 213, 219, 0.226);
+  opacity: 1;
+}
+
+.buttons-box {
+  display: flex;
+  justify-content: space-between;
+}
