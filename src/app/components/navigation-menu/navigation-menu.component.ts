@@ -10,9 +10,9 @@ import { IonButtons, IonContent, IonHeader, IonMenu, IonMenuButton, IonMenuToggl
   standalone: true,
   imports: [IonItem, IonList, IonButtons, IonHeader, IonToolbar, IonTitle, IonContent, IonMenuButton, IonMenu, IonMenuToggle, CommonModule, RouterLink]
 })
-export class NavigationMenuComponent  implements OnInit {
+export class NavigationMenuComponent implements OnInit {
 
-  private router = inject(Router);
+  router = inject(Router)
 
   readonly navigationItems = [
     { title: 'Home', path: '/home' }, 
@@ -20,11 +20,20 @@ export class NavigationMenuComponent  implements OnInit {
     { title: 'Form', path: '/form' }
   ];
 
-  public currentTitle = 'Home';
-
   constructor() { }
 
+  navigationTitle = ''
+
   ngOnInit() {
+    this.router.events.subscribe(val => {
+      const currentPath = window.location.pathname
+
+      this.navigationItems.forEach(item => {
+        if (item.path === currentPath) {
+          this.navigationTitle = item.title
+        }
+      })
+    })
   }
 
 }
