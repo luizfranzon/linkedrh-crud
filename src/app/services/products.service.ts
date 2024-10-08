@@ -4,24 +4,39 @@ import { Observable } from "rxjs";
 import { IProductModel } from "../models/product.model";
 
 interface AddProduct extends Omit<IProductModel, "id"> {}
+
+interface ListProductsOptions {
+  pageNumber?: number;
+  limit?: number;
+}
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ProductsService {
+  private readonly url = "http://localhost:3000/products";
 
-  private readonly url = "http://localhost:3000/products"
-  
-  httpService = inject(HttpClient)
-  
-  listProducts(): Observable<IProductModel[]> {
-    return this.httpService.get<IProductModel[]>(this.url)
+  httpService = inject(HttpClient);
+
+  listProducts(
+    listProductsOptions?: ListProductsOptions
+  ): Observable<IProductModel[]> {
+    let url = new URL(this.url);
+    if (listProductsOptions && listProductsOptions.pageNumber) {
+      url.searchParams.set("_page", listProductsOptions.pageNumber.toString());
+      url.searchParams.set(
+        "_limit",
+        listProductsOptions?.limit?.toString() ?? "3"
+      );
+    }
+
+    return this.httpService.get<IProductModel[]>(url.href);
   }
 
   addProduct(product: AddProduct): Observable<IProductModel> {
-    return this.httpService.post<IProductModel>(this.url, product)
+    return this.httpService.post<IProductModel>(this.url, product);
   }
 
   removeProductById(id: number): Observable<IProductModel> {
-    return this.httpService.delete<IProductModel>(`${this.url}/${id}`)
+    return this.httpService.delete<IProductModel>(`${this.url}/${id}`);
   }
 }

@@ -1,12 +1,31 @@
-import { CurrencyPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCardSubtitle, IonButton, IonIcon, IonChip, IonModal, IonContent, IonToolbar, IonTitle, IonButtons } from '@ionic/angular/standalone';
-import { IProductModel } from 'src/app/models/product.model';
+import { CurrencyPipe } from "@angular/common";
+import {
+  ChangeDetectionStrategy,
+  Component,
+  input,
+  output,
+} from "@angular/core";
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonButton,
+  IonIcon,
+  IonChip,
+  IonModal,
+  IonContent,
+  IonToolbar,
+  IonTitle,
+  IonButtons,
+} from "@ionic/angular/standalone";
+import { IProductModel } from "src/app/models/product.model";
 
 @Component({
-  selector: 'app-product-card',
-  templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss'],
+  selector: "app-product-card",
+  templateUrl: "./product-card.component.html",
+  styleUrls: ["./product-card.component.scss"],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
@@ -23,15 +42,21 @@ import { IProductModel } from 'src/app/models/product.model';
     IonIcon,
     IonToolbar,
     IonTitle,
-    IonButtons
+    IonButtons,
   ],
 })
 export class ProductCardComponent {
   deleteProduct = output<void>();
 
-  productData = input.required<IProductModel>()
+  productData = input.required<IProductModel>();
 
   handleDeleteProduct() {
     this.deleteProduct.emit();
+  }
+
+  retrieveImageUrl() {
+    return this.productData().imageUrl.includes("http")
+      ? this.productData().imageUrl
+      : "https://ionicframework.com/docs/img/demos/card-media.png";
   }
 }

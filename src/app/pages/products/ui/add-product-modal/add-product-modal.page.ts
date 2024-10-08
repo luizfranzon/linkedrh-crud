@@ -67,28 +67,35 @@ export class AddProductModal implements OnInit {
   modalCtrl = inject(ModalController);
 
   productForm = new FormGroup({
-    title: new FormControl("", [Validators.required]),
-    category: new FormControl("", [Validators.required]),
-    price: new FormControl("", [Validators.required]),
-    description: new FormControl("", [Validators.required]),
-    imageUrl: new FormControl("", [Validators.required]),
+    title: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    category: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    price: new FormControl(0, {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    description: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
+    imageUrl: new FormControl("", {
+      nonNullable: true,
+      validators: [Validators.required],
+    }),
   });
 
-  handleSubmit(event: any) {
-    const product = {
-      title: this.productForm.get("title")!.value!,
-      category: this.productForm.get("category")!.value!,
-      price: Number(this.productForm.get("price")!.value!),
-      description: this.productForm.get("description")!.value!,
-      imageUrl: this.productForm.get("imageUrl")!.value!,
-    };
-
+  handleSubmit() {
+    const product = this.productForm.getRawValue();
     this.productsService
       .addProduct(product)
       .pipe(first())
       .subscribe((response) => {
         this.handleClearForm();
-
         this.modalCtrl.dismiss({ ...product, id: response.id }, "confirm");
       });
   }

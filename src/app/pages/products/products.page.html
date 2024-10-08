@@ -8,12 +8,12 @@
     </ion-toolbar>
   </ion-header>
 
+  <p>{{ productCounterMessage() }}</p>
+
   <ion-list>
-    @if(loadProducts().isLoading === true) {
+    @if(isLoading() === true) { @for(i of minSkeletonOnScreen(); track i) {
     <app-product-card-skeleton />
-    <app-product-card-skeleton />
-    <app-product-card-skeleton />
-    } @else if (!products().length) {
+    } } @else if (!products().length) {
     <div class="empty-list-message">
       <span>Nenhum produto encontrado!</span>
     </div>
@@ -23,6 +23,15 @@
       (deleteProduct)="confirmDeleteProduct(product.id)"
     />
     } }
+    <ion-infinite-scroll
+      [disabled]="disableInfintScroll()"
+      (ionInfinite)="loadProducts($event)"
+    >
+      <ion-infinite-scroll-content
+        loadingText="Please wait..."
+        loadingSpinner="bubbles"
+      ></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
   </ion-list>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
