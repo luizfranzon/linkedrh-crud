@@ -1,6 +1,6 @@
+import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
-import { Observable } from "rxjs";
 import { IProductModel } from "../models/product.model";
 
 interface AddProduct extends Omit<IProductModel, "id"> {}
