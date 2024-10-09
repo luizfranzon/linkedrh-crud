@@ -169,6 +169,9 @@ export class ProductsPage implements OnInit {
   }
 
   handleRefresh(loadingEvent: IonRefresherCustomEvent<RefresherEventDetail>) {
+    this.currentPaginationPage.set(1);
+    this.products.set([]);
+    this.disableInfintScroll.set(false);
     this.loadProducts();
     loadingEvent.target.complete();
   }
