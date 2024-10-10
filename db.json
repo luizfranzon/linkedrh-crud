@@ -1,0 +1,36 @@
+{
+  "products": [
+    {
+      "title": "123",
+      "category": "Eletrônico",
+      "price": 230,
+      "description": "fdfsdf",
+      "imageUrl": "sefsef",
+      "id": 1
+    },
+    {
+      "title": "sefs",
+      "category": "Eletrônico",
+      "price": 4234,
+      "description": "234",
+      "imageUrl": "234",
+      "id": 2
+    },
+    {
+      "title": "234",
+      "category": "Eletrônico",
+      "price": 234,
+      "description": "4234",
+      "imageUrl": "234",
+      "id": 3
+    },
+    {
+      "title": "234",
+      "category": "Eletrônico",
+      "price": 4234,
+      "description": "4234",
+      "imageUrl": "4234",
+      "id": 4
+    }
+  ]
+}
